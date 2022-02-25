@@ -3,7 +3,7 @@ def prompt(message)
 end
 
 def welcome_graphic
-  welcome = <<-graphic
+  welcome = <<-GRAPHIC
     
 $$--------------------------$$$$$$$--------------------------$$
  
@@ -11,7 +11,7 @@ Welcome to the Mortgage Calculator! Who doesn't love mortgages?
 
 $$--------------------------$$$$$$$--------------------------$$
 
-            graphic
+            GRAPHIC
 
   puts welcome
 end
@@ -33,7 +33,7 @@ def valid_number?(input)
 end
 
 # tbh, I couldn't figure out how to add commas so I googled
-# this method and it is a bit above my current understanding!
+# this method and the gsub/regex bits are above my current understanding!
 def add_commas(number)
   whole, decimal = number.to_s.split('.')
   if whole.to_i < -999 || whole.to_i > 999

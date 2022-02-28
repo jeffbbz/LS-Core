@@ -29,7 +29,56 @@ def float?(input)
 end
 
 def valid_number?(input)
-  integer?(input) || float?(input)
+  (integer?(input) || float?(input)) && input.start_with?("0") != true
+end
+
+def loan_input
+  loan = ''
+  loop do
+    prompt("Input your full loan amount:")
+    loan = format_input
+
+    if valid_number?(loan)
+      break
+    else
+      prompt("Please use only valid numbers and no currency symbols.")
+    end
+  end
+  loan
+end
+
+def apr_input
+  apr = ''
+  loop do
+    prompt("Input your Annual Percentage Rate (APR):")
+    apr = format_input
+
+    if valid_number?(apr)
+      break
+    else
+      prompt("Please use only valid numbers and do not include a % sign.")
+    end
+  end
+  apr
+end
+
+def loan_duration_input
+  annual_loan_duration = ''
+  loop do
+    prompt("Input your loan duration (in years):")
+    annual_loan_duration = format_input
+
+    if valid_number?(annual_loan_duration)
+      break
+    else
+      prompt("Please use only valid numbers and no letters.")
+    end
+  end
+  annual_loan_duration
+end
+
+def monthly_pay(amount, interest, duration)
+  amount.to_f * (interest / (1 - (1 + interest)**(-duration)))
 end
 
 # tbh, I couldn't figure out how to add commas so I googled
@@ -52,64 +101,34 @@ def loading_calculations
   sleep 0.15
 end
 
+loan = ''
+apr = ''
 annual_loan_duration = ''
 
-welcome_graphic
+welcome_graphic()
 
 loop do
-  loan_amount = ''
-  loop do
-    prompt("Input your full loan amount:")
-    loan_amount = format_input
+  loan = loan_input()
+  apr = apr_input()
+  annual_loan_duration = loan_duration_input()
 
-    if valid_number?(loan_amount)
-      break
-    else
-      prompt("Please use only valid numbers and no currency symbols.")
-    end
-  end
-
-  apr = ''
-  loop do
-    prompt("Input your Annual Percentage Rate (APR):")
-    apr = format_input
-
-    if valid_number?(apr)
-      break
-    else
-      prompt("Please use only valid numbers and do not include a % sign.")
-    end
-  end
-
-  loop do
-    prompt("Input your loan duration (in years):")
-    annual_loan_duration = format_input
-
-    if valid_number?(annual_loan_duration)
-      break
-    else
-      prompt("Please use only valid numbers and no letters.")
-    end
-  end
-
-  monthly_interest_rate = (apr.to_f / 12) / 100
+  monthly_int_rate = (apr.to_f / 12) / 100
 
   monthly_loan_duration = annual_loan_duration.to_i * 12
 
-  monthly_payment = loan_amount.to_f * (monthly_interest_rate / 
-                    (1 - (1 + monthly_interest_rate)**(-monthly_loan_duration)))
+  monthly_payment = monthly_pay(loan, monthly_int_rate, monthly_loan_duration)
 
   total_payment = monthly_payment * monthly_loan_duration
 
-  total_interest = total_payment - loan_amount.to_f
+  total_interest = total_payment - loan.to_f
 
-  loading_calculations
+  loading_calculations()
 
   result_prompt = <<-RESULT
     
     Okay, here's your result:
 
-    With a loan of $#{add_commas(loan_amount)}, 
+    With a loan of $#{add_commas(loan)}, 
     and a #{apr.to_f}% APR,
     for a term of #{annual_loan_duration} years:
 

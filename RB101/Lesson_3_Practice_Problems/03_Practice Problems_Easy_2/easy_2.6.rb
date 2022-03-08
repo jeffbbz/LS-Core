@@ -1,0 +1,7 @@
+# RB101 Lesson 3: Practice Problems - Easy 2.6
+
+flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+
+# How can we add the family pet "Dino" to our usual array
+
+flintstones << "Dino"

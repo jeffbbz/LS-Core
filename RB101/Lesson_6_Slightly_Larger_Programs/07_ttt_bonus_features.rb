@@ -11,7 +11,7 @@ def prompt(msg)
 end
 
 # rubocop: disable Metrics/AbcSize
-def display_board(brd)
+def display_board(brd)                              # The TicTacToe Board
   puts "\n"
   prompt "You're #{PLAYER_MARKER}. Computer is #{COMPUTER_MARKER}."
   puts ""
@@ -41,9 +41,13 @@ def empty_squares(brd)
 end
 
 def display_welcome
-  puts "-+- It's Tic Tac Toe Time! -+-"
-  puts "-+- First to win 5 rounds, wins it all! -+-"
-  puts "\n"
+  welcome = <<-WELCOME
+
+-+- It's Tic Tac Toe Time! -+-
+-+- First to win 5 rounds, wins it all! -+-
+
+            WELCOME
+  puts welcome
 end
 
 def computer_starting_player_choice

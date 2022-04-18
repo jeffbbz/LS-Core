@@ -65,7 +65,7 @@ def display_rules
   |  cards. You then can "hit" (take a card) or "stay" (keep your  |
   |  cards). You can hit as long as you have not gone over #{BUST_AFTER}.     |
   |  The dealer will automatically hit for itself until it's card  |
-  |  total is higher than #{dealr_STAYS_AT} and equal to or higher than the       |
+  |  total is higher than #{DEALER_STAYS_AT} and equal to or higher than the       |
   |  player's total, or it has busted.                             |
   |                                                                |
   |                      ♥ ♠ Card values ♦ ♣                       |
@@ -177,16 +177,16 @@ end
 def display_hand(cards, value, player, first_time=false)
   if player == 'player'
     prompt "You've got:  #{human_readable_card(cards)}"
-    prompt "You have value of #{value}."
+    prompt "You have a value of #{value}."
   elsif first_time == true && player == 'dealer'
     prompt "Okay, let's deal the cards!"
     puts "\n"
     prompt "Dealer has:  #{human_readable_card(cards[0])} and an unknown card."
-    prompt "Dealer has value of at least #{single_card_val(cards[0][0])}."
+    prompt "Dealer has a value of at least #{single_card_val(cards[0][0])}."
   else
     sleep 0.75
     prompt "Dealer got:  #{human_readable_card(cards)}"
-    prompt "Dealer has value of #{value}."
+    prompt "Dealer has a value of #{value}."
   end
   puts "\n"
 end

@@ -186,7 +186,7 @@ def display_hand(cards, value, player, first_time=false)
   else
     sleep 0.75
     prompt "Dealer got:  #{human_readable_card(cards)}"
-    prompt "Dealer has val of #{value}."
+    prompt "Dealer has value of #{value}."
   end
   puts "\n"
 end

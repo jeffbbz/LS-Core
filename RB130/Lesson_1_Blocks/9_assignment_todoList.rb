@@ -68,7 +68,7 @@ class TodoList
 
   def to_s
     <<~TEXT
-    "---- #{title} ----"
+    ---- #{title} ----
     #{todos.map(&:to_s).join("\n")}
     TEXT
   end

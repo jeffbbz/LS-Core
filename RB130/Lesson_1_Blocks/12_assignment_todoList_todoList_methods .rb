@@ -35,7 +35,7 @@ class TodoList
   end
 
   def mark_done(title)
-    find_by_title(title).done!
+    find_by_title(title).done! if find_by_title(title)
   end
 
   def mark_all_done
@@ -182,9 +182,10 @@ list << todo3                   # adds todo3 to end of list, returns list
 
 # # ---- mark_done -----
 
-# p list.all_done
-# list.mark_done("Clean room")
-# p list.all_done
+p list.all_done
+list.mark_done("Borges MOrgue")
+list.mark_done("Clean room")
+p list.all_done
 
 # # ---- mark_all_done -----
 

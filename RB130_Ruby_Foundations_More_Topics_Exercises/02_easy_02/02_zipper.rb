@@ -35,6 +35,28 @@ def zip(arr1, arr2)
   arr1.map.with_index { |arr1_el, idx| [arr1_el, arr2[idx]] }
 end
 
+# More complicated but another way
+
+def zip(arr1, arr2)
+  arr1.each_with_object([]).with_index do |(arr1_el, new_arr), idx|
+    new_arr << [arr1_el, arr2[idx]]
+  end
+end
+
+# Brute Force until Loop for fun
+
+def zip(arr1, arr2)
+  idx = 0
+  new_arr = []
+
+  until new_arr.size == arr1.size
+    new_arr << [arr1[idx], arr2[idx]]
+    idx += 1
+  end
+
+  new_arr
+end
+
 array1 = [1, 2, 3]
 array2 = [4, 5, 6]
 

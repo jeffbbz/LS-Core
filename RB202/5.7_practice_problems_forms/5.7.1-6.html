@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Practice Problems!</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="5.7.1-6.css">
+  </head>
+  <body>
+    <form action="#" method="post">
+      <fieldset>
+        <dl>
+          <dt><label for="first-name">First Name</label></dt>
+          <dd><input type="text" name="first-name" id="first-name" required></dd>
+
+          <dt><label for="last-name">Last Name</label></dt>
+          <dd><input type="text" name="last-name" id="last-name" required></dd>
+
+          <dt><label for="email">Email</label></dt>
+          <dd><input type="email" name="email" id="email" 
+                autocapitalize="none" autocomplete="off"
+                autocorrect="off" required></dd>
+
+          <dt><label for="phone-number">Phone Number</label></dt>
+          <dd><input type="tel" name="phone-number" 
+                     id="phone-number" placeholder="###-###-####" required></dd>
+
+          <dt><label for="phone-type">Phone Type</label></dt>
+          <dd>
+            <select name="phone-type" id="phone-type" required>
+              <option value="" disabled>Choose a Type</option>
+              <option value="home" selected>Home</option>
+              <option value="business">business</option>
+              <option value="mobile">Mobile</option>
+            </select>
+          </dd>
+
+          <dt><label for="message-box">Message</label></dt>
+          <dd><textarea id="message-box" name="message-box" 
+                        rows="6" cols="80" placeholder="Give us a message then, pally!"></textarea>
+        </dl>
+
+        <input type="submit" value="Send">
+      </fieldset>
+    </form>
+  </body>
+</html>

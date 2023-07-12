@@ -20,7 +20,7 @@ OUTPUT: Boolean T/F
   - For each element, yield to the block and pass the element to the block
   - each time the block returns true, increment a counter array
   - return false if counter array has more than 2 elements
-2. If counter array has 1 element return false, otherwise return true
+2. If counter array has more than 1 element return false, otherwise return true
 
 =end
 

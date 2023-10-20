@@ -1,4 +1,8 @@
 # Ignore all .DS_Store
 
 **/.DS_Store
+
+# Ignore Webstorm hidden idea folder
+
 **/.idea
+.idea

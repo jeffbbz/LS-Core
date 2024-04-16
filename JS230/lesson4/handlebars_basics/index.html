@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Handlebars Basics</title>
+        <script
+                src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.8/handlebars.js"
+                integrity="sha512-qwi9BHx0+QtW8krMaXObe76bUkPf8nRJOufgT5GS7C74s2sV+neksCVUhAWuMSXxZzKHiM3RuADPmWbhguWEIw=="
+                crossorigin="anonymous"
+                referrerpolicy="no-referrer"></script>
+        <script
+                src="https://code.jquery.com/jquery-3.7.1.js"
+                integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+                crossorigin="anonymous"></script>
+        <script src="code.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <script id="tag" type="text/x-handlebars">
+            <strong>{{this}}</strong>
+        </script>
+
+        <script id="post" type="text/x-handlebars">
+            <article>
+                <h1>{{title}}</h1>
+                <p><time>Posted on {{published}}</time></p>
+                {{{body}}}
+                <footer>
+                    <p>
+                        Tags:
+                        {{#each tags}}
+                            {{>tag}}
+                        {{/each}}
+                    </p>
+                </footer>
+            </article>
+        </script>
+
+        <script id="posts" type="text/x-handlebars">
+            {{#each posts}}
+                <article>
+                    <h1>{{title}}</h1>
+                    <p><time>Posted on {{published}}</time></p>
+                    {{{body}}}
+                    <footer>
+                        <p>
+                            {{#if tags}}
+                                Tags:
+                                {{#each tags}}
+                                    {{>tag}}
+                                {{/each}}
+                            {{else}}
+                                Not tagged
+                            {{/if}}
+                        </p>
+                    </footer>
+                </article>
+            {{/each}}
+        </script>
+    </body>
+</html>

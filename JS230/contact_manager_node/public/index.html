@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class='no-js' lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="/javascripts/jquery.js"></script>
+    <script src="/javascripts/handlebars.js"></script>
+    <script src="javascripts/contactManager2.js" defer></script>
+  </head>
+  <body>
+    <header class="bs-header">
+      <div class="container">
+        <a href="#">
+          <h1>Contact Manager</h1>
+        </a>
+        <p>Practice Project for Handlebars, Express, and JS</p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 main-container">
+          <div style>
+            <div class="row well">
+              <div class="text-center col-sm-4 add-contact">
+                <a href="#" class="btn btn-lg btn-outline">Add Contact</a>
+              </div>
+              <div class="text-center col-sm-4">
+                <input type="text" class="form-control contact-name-search" placeholder="Search">
+              </div>
+              <div class="text-center col-sm-4 show-all-contacts" style="display: none;">
+                <a href="#" class="btn btn-lg btn-outline">Show All Contacts</a>
+              </div>
+            </div>
+            <ul class="media-list row contacts-container">
+
+            </ul>
+            <div class="empty-contacts-placeholder">
+              <div class="well text-center">
+                <h3>You have no contacts.</h3>
+                <a href="#" class="btn btn-lg btn-outline">Add Contact</a>
+              </div>
+            </div>
+            <div class="empty-search-contacts-placeholder" style="display: none;">
+              <div class="well text-center">
+                <h3>There are no contacts that start with <strong></strong></h3>
+              </div>
+            </div>
+            <div class="forms-container">
+              <h2 class="page-header text-center" style="display: none;">Create New Contact</h2>
+              <form id="create" class="form-horizontal contact-form" method="post" role="form" style="display: none;">
+                <div class="form-group has-feedback form-group-name">
+                  <label class="col-sm-4 control-label">Full Name:</label>
+                  <div class="col-sm-6">
+                    <input class="form-control contact-full-name-input" type="text" name="full_name">
+                  </div>
+                </div>
+                <div class="form-group has-feedback form-group-email">
+                  <label class="col-sm-4 control-label">Email Address:</label>
+                  <div class="col-sm-6">
+                    <input class="form-control contact-email-input" type="email" name="email">
+                  </div>
+                </div>
+                <div class="form-group has-feedback form-group-phone">
+                  <label class="col-sm-4 control-label">Phone Number:</label>
+                  <div class="col-sm-6">
+                    <input class="form-control contact-phone-input" type="tel" name="phone_number">
+                  </div>
+                </div>
+                <div class="form-group has-feedback form-group-tags">
+                  <label class="col-sm-4 control-label">Tags:</label>
+                  <div class="col-sm-6">
+                    <input class="form-control contact-tags-input" type="text" name="tags">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-4 col-sm-3">
+                    <button class="btn btn-outline btn-lg btn-block" type="submit">Submit</button>
+                  </div><div class="col-sm-3">
+                  <button class="btn-close-form btn btn-outline btn-lg btn-block" type="button">Cancel</button>
+                </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer text-center">
+        <p>Developed by a very cool guy.</p>
+      </div>
+    </div>
+
+    <script id="contacts" type="text/x-handlebars">
+      {{#each contacts}}
+      <li class="media col-md-3 col-sm-4" data-id="{{id}}">
+            <div class="media-heading">
+                <h3>{{full_name}}</h3>
+            </div>
+            <div class="media-body">
+              <dl>
+                <dt>Phone Number:</dt>
+                <dd>{{phone_number}}</dd>
+                <dt>Email:</dt>
+                <dd>{{email}}</dd>
+                <dt>Tags:</dt>
+                {{#each tags}}
+                <a href="#" class="contact-tag">{{this}}</a>
+                {{/each}}
+              </dl>
+            </div>
+            <div class="contact-btn-wrapper">
+              <a href="#" class="edit-contact btn btn-outline"> Edit</a>
+              <a href="#" class="delete-contact btn btn-outline"> Delete</a>
+            </div>
+        </li>
+      {{/each}}
+    </script>
+
+<!--    <script id="contactTemplate" type="text/x-handlebars">-->
+<!--        <li class="media col-md-3 col-sm-4" data-id="{{id}}">-->
+<!--          <div class="media-heading">-->
+<!--            <h3>{{full_name}}</h3>-->
+<!--          </div>-->
+<!--          <div class="media-body">-->
+<!--            <dl>-->
+<!--              <dt>Phone Number:</dt>-->
+<!--              <dd>{{phone_number}}</dd>-->
+<!--              <dt>Email:</dt>-->
+<!--              <dd>{{email}}</dd>-->
+<!--              <dt>Tags:</dt>-->
+<!--              {{#each tags}}-->
+<!--                <a href="#" class="contact-tag">{{this}}</a>-->
+<!--              {{/each}}-->
+<!--            </dl>-->
+<!--          </div>-->
+<!--          <div class="contact-btn-wrapper">-->
+<!--            <a href="#" class="edit-contact btn btn-outline"> Edit</a>-->
+<!--            <a href="#" class="delete-contact btn btn-outline"> Delete</a>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--    </script>-->
+
+<!--    <script id="contacts" type="text/x-handlebars">-->
+<!--      {{#each contacts}}-->
+<!--        {{> contactTemplate}}-->
+<!--      {{/each}}-->
+<!--    </script>-->
+
+
+    <script id="tags" type="text/x-handlebars">
+      <div class="tag-buttons">
+        <label class="col-sm-4 control-label">Click to Select Tags:</label>
+        <div class="contact-btn-wrapper tag-button-wrapper">
+        {{#each tags}}
+          <a href="#" class="btn btn-outline btn-sm tag-link">{{this}}</a>
+        {{/each}}
+        </div>
+        <small class="help-block"></small>
+      </div>
+    </script>
+
+    <script id="edit-contact" type="text/x-handlebars">
+      <form id="edit" class="form-horizontal contact-form" method="post" role="form" style="display: block;">
+        <div class="form-group has-feedback form-group-name">
+          <label class="col-sm-4 control-label">Full Name:</label>
+          <div class="col-sm-6">
+            <input class="form-control contact-full-name-input" type="text" name="full_name" value="{{full_name}}">
+          </div>
+        </div>
+        <div class="form-group has-feedback form-group-email">
+          <label class="col-sm-4 control-label">Email Address:</label>
+          <div class="col-sm-6">
+            <input class="form-control contact-email-input" type="email" name="email" value="{{email}}">
+          </div>
+        </div>
+        <div class="form-group has-feedback form-group-phone">
+          <label class="col-sm-4 control-label">Phone Number:</label>
+          <div class="col-sm-6">
+            <input class="form-control contact-phone-input" type="tel" name="phone_number" value="{{phone_number}}">
+          </div>
+        </div>
+        <div class="form-group has-feedback form-group-tags">
+          <label class="col-sm-4 control-label">Tags:</label>
+          <div class="col-sm-6">
+            <input class="form-control contact-tags-input" type="text" name="tags" value="{{tags}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-4 col-sm-3">
+            <button class="btn btn-outline btn-lg btn-block" type="submit">Submit</button>
+          </div><div class="col-sm-3">
+          <button class="btn-close-form btn btn-outline btn-lg btn-block" type="button">Cancel</button>
+        </div>
+        </div>
+      </form>
+    </script>
+
+  </body>
+</html>
